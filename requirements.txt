@@ -3,7 +3,6 @@ Flask-CORS
 unidecode
 gunicorn
 pandas
-sqlite3
 re
 random
 urllib.parse
