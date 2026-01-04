@@ -17,7 +17,7 @@
             transform: translateY(-1px);
         }
         .search-bar-input:focus {
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); /* Indigo-500 ring */
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
         }
         .recipe-card {
             transition: transform 0.2s, box-shadow 0.2s;
@@ -27,8 +27,6 @@
             transform: translateY(-4px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
         }
-       
-        /* Estils del Chatbot */
         .chatbot-window {
             width: 350px;
             height: 500px;
@@ -38,7 +36,7 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         .chat-header {
-            background-color: #3f3f46; /* Gray-700 */
+            background-color: #3f3f46;
             color: white;
         }
         .chat-messages {
@@ -48,26 +46,22 @@
             padding: 1rem;
         }
         .user-message {
-            background-color: #eef2ff; /* Indigo-50 */
-            color: #312e81; /* Indigo-900 */
+            background-color: #eef2ff;
+            color: #312e81;
             align-self: flex-end;
             max-width: 80%;
         }
         .bot-message {
-            background-color: #f3f4f6; /* Gray-100 */
-            color: #1f2937; /* Gray-800 */
+            background-color: #f3f4f6;
+            color: #1f2937;
             align-self: flex-start;
             max-width: 80%;
         }
-       
-        /* Estils del Modal NO INVASIU */
         .modal-content-wrapper {
             max-width: 95%;
             max-height: 95vh;
             overflow-y: auto;
         }
-       
-        /* Estil per a les imatges de menjar en rodona a l'encapçalament */
         .header-image {
             width: 180px;
             height: 180px;
@@ -75,11 +69,8 @@
             border-radius: 50%;
             border: 6px solid #F0C419;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-            /* Fallback per si la imatge no carrega */
-            background-color: #e5e7eb; /* Gray-200 */
+            background-color: #e5e7eb;
         }
-       
-        /* Ajust per empènyer les imatges més cap als costats i sota el títol */
         .header-title-container {
             display: flex;
             align-items: center;
@@ -91,8 +82,6 @@
             margin-top: 20px;
             gap: 40px;
         }
-
-        /* Estil base per al botó de filtre dinàmic */
         .filter-btn {
             transition: background-color 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
             border: 1px solid;
@@ -102,7 +91,6 @@
             opacity: 1;
             filter: brightness(0.95);
         }
-
     </style>
 </head>
 <body class="min-h-screen p-4 md:p-8">
@@ -110,63 +98,45 @@
     <header class="text-center mb-10">
         <div class="header-title-container">
             <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=180&h=180&auto=format&fit=crop" alt="Amanida i Pollastre" class="header-image hidden sm:block">
-            <h1 class="text-5xl font-extrabold text-gray-900 mb-2">
-                Receptari Culinari Digital
-            </h1>
+            <h1 class="text-5xl font-extrabold text-gray-900 mb-2">Receptari Culinari Digital</h1>
             <img src="https://cdn.pixabay.com/photo/2017/09/30/15/10/plate-2802332_1280.jpg" alt="Ramen/Fideus" class="header-image hidden sm:block">
         </div>
-        <p class="text-xl text-gray-500">
-            La teva col·lecció de plats.
-        </p>
+        <p class="text-xl text-gray-500">La teva col·lecció de plats.</p>
     </header>
    
     <div id="connection-status" class="text-center mb-6">
         <span id="user-id-display" class="inline-flex items-center px-3 py-1 text-sm font-medium text-indigo-700 bg-indigo-100 rounded-full">
-            <i data-lucide="user" class="w-4 h-4 mr-1"></i>
-            Carregant usuari...
+            <i data-lucide="user" class="w-4 h-4 mr-1"></i> Carregant usuari...
         </span>
     </div>
    
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-   
         <div class="lg:col-span-3">
-   
             <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-3">
                 <div class="relative w-full sm:w-80">
-                    <input
-                        type="text"
-                        id="search-input"
-                        placeholder="Cerca per nom..."
-                        class="search-bar-input w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none"
-                    />
+                    <input type="text" id="search-input" placeholder="Cerca per nom..." class="search-bar-input w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none" />
                     <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
                 </div>
-
                 <div class="flex gap-2 w-full sm:w-auto">
                     <button id="view-list-btn" class="btn-hover px-4 py-3 rounded-xl font-semibold transition duration-150 w-full sm:w-auto bg-indigo-600 text-white shadow-md">
-                        <i data-lucide="list-ordered" class="w-5 h-5 inline-block mr-1"></i>
-                        Llista
+                        <i data-lucide="list-ordered" class="w-5 h-5 inline-block mr-1"></i> Llista
                     </button>
                     <button id="view-add-btn" class="btn-hover px-4 py-3 rounded-xl font-semibold transition duration-150 w-full sm:w-auto bg-gray-200 text-gray-700 hover:bg-gray-300">
-                        <i data-lucide="plus-circle" class="w-5 h-5 inline-block mr-1"></i>
-                        Afegir
+                        <i data-lucide="plus-circle" class="w-5 h-5 inline-block mr-1"></i> Afegir
                     </button>
                 </div>
             </div>
        
-            <div id="filter-buttons" class="flex flex-wrap gap-2 mb-6">
-                </div>
+            <div id="filter-buttons" class="flex flex-wrap gap-2 mb-6"></div>
 
             <div id="recipe-list-view">
-                <div id="recipes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                </div>
+                <div id="recipes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 <div id="no-recipes-message" class="hidden bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-xl text-yellow-700 mt-6">
                     <p class="font-bold">No s'han trobat receptes.</p>
                     <p>Prova d'ajustar la teva cerca o filtre.</p>
                 </div>
                 <div id="loading-message" class="text-center py-10 text-gray-500 text-xl flex justify-center items-center">
-                    <i data-lucide="loader" class="w-8 h-8 animate-spin mr-3"></i>
-                    Carregant receptes...
+                    <i data-lucide="loader" class="w-8 h-8 animate-spin mr-3"></i> Carregant receptes...
                 </div>
             </div>
        
@@ -177,7 +147,6 @@
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="nom">Nom de la Recepta</label>
                         <input id="nom" name="nombre" type="text" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl"/>
                     </div>
-               
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="categoria">País / Origen Culinari</label>
                         <select id="categoria" name="categoria" required class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl">
@@ -189,27 +158,22 @@
                             <option value="chile">Xile</option>
                             <option value="venezuela">Veneçuela</option>
                             <option value="ecuador">Equador</option>
-                            </select>
+                        </select>
                     </div>
-               
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="ingredients">Ingredients (separats per línia o punt)</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="ingredients">Ingredients</label>
                         <textarea id="ingredients" name="ingredientes" required rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl"></textarea>
                     </div>
-
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="passos">Passos (Instruccions de preparació)</label>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="passos">Passos (Instruccions)</label>
                         <textarea id="passos" name="pasos" required rows="3" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl"></textarea>
                     </div>
-
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="imatge_url">URL Imatge (Opcional)</label>
                         <input id="imatge_url" name="imagen_url" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl"/>
                     </div>
-
                     <button type="submit" id="save-recipe-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-xl focus:outline-none focus:shadow-outline transition duration-150 btn-hover flex items-center justify-center text-lg mt-4" disabled>
-                        <i data-lucide="save" class="w-5 h-5 mr-2"></i>
-                        Guardar Recepta
+                        <i data-lucide="save" class="w-5 h-5 mr-2"></i> Guardar Recepta
                     </button>
                 </form>
             </div>
@@ -219,13 +183,11 @@
                     <button id="close-detail-modal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition duration-150 z-10">
                         <i data-lucide="x" class="w-8 h-8"></i>
                     </button>
-                    <div id="modal-content">
-                        </div>
+                    <div id="modal-content"></div>
                 </div>
             </div>
 
             <div id="floating-message-container" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50"></div>
-
         </div>
     </div>
    
@@ -233,38 +195,22 @@
         <button id="chatbot-toggle-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-lg transition duration-300 btn-hover">
             <i data-lucide="message-square" class="w-7 h-7"></i>
         </button>
-
-        <div id="chatbot-window" class="chatbot-window hidden absolute bottom-16 right-0 rounded-xl border border-gray-200">
+        <div id="chatbot-window" class="chatbot-window hidden absolute bottom-16 right-0 rounded-xl border border-gray-200 bg-white">
             <div class="chat-header p-3 flex justify-between items-center rounded-t-xl">
                 <span class="font-bold text-lg flex items-center">
-                    <i data-lucide="chef-hat" class="w-5 h-5 mr-2"></i>
-                    Assistent de Receptes
+                    <i data-lucide="chef-hat" class="w-5 h-5 mr-2"></i> Assistent
                 </span>
                 <button id="chatbot-close-btn" class="text-white opacity-75 hover:opacity-100">
                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
-
             <div id="chat-messages" class="chat-messages space-y-3">
-                <div class="bot-message p-3 rounded-xl shadow-sm text-sm">
-                    Hola! Sóc l'Assistent de Receptes. Puc ajudar-te a cercar plats, llistar categories o suggerir-te alguna cosa. Què vols fer?
-                </div>
+                <div class="bot-message p-3 rounded-xl shadow-sm text-sm">Hola! Puc ajudar-te amb les receptes. Què vols fer?</div>
             </div>
-
             <form id="chat-form" class="p-3 border-t border-gray-200 bg-white">
                 <div class="flex">
-                    <input
-                        type="text"
-                        id="chat-input"
-                        placeholder="Escriu el teu missatge..."
-                        class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                        required
-                    />
-                    <button
-                        type="submit"
-                        id="chat-send-btn"
-                        class="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-r-lg transition duration-150 flex items-center justify-center"
-                    >
+                    <input type="text" id="chat-input" placeholder="Escriu..." class="w-full px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+                    <button type="submit" id="chat-send-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-r-lg transition duration-150 flex items-center justify-center">
                         <i data-lucide="send" class="w-5 h-5"></i>
                     </button>
                 </div>
@@ -274,626 +220,300 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import {
-            getAuth,
-            signInAnonymously,
-            signInWithCustomToken,
-            onAuthStateChanged
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import {
-            getFirestore,
-            collection,
-            addDoc,
-            onSnapshot,
-            query,
-            setLogLevel,
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Global variables provided by the Canvas environment
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-        // --- FIREBASE INITIALIZATION ---
         let db, auth, userId = null;
-        let isAuthReady = false;
-        let allRecipes = []; // Cache per a les receptes
+        let allRecipes = [];
+        let currentFilter = 'all';
 
-        // Mapeig de categories (PAÏSOS AMB COLOR)
-        const CATEGORY_MAP = {
-            "mexic": "Mèxic",
-            "peru": "Perú",
-            "españa": "Espanya",
-            "argentina": "Argentina",
-            "colombia": "Colòmbia",
-            "chile": "Xile",
-            "venezuela": "Veneçuela",
-            "ecuador": "Equador",
-        };
-        // Icones per a cada país
-        const CATEGORY_ICONS = {
-            "mexic": "taco",
-            "peru": "mountain",
-            "españa": "flag",
-            "argentina": "gauge-circle",
-            "colombia": "coffee",
-            "chile": "grape",
-            "venezuela": "bowl-rice",
-            "ecuador": "sun",
-        };
-       
-        // --- NOVA PALETA DE COLORS UNIFICADA (HEX CODES) ---
+        const CATEGORY_MAP = { "mexic": "Mèxic", "peru": "Perú", "españa": "Espanya", "argentina": "Argentina", "colombia": "Colòmbia", "chile": "Xile", "venezuela": "Veneçuela", "ecuador": "Equador" };
         const CATEGORY_COLORS = {
-            "mexic": { light: "#D7E9E9", dark: "#4B7A7A", text_dark: "#333333", bg: "#77A8A8", text: "#FFFFFF" }, // Muted Teal
-            "peru": { light: "#F8E4D7", dark: "#B3744D", text_dark: "#333333", bg: "#E8A375", text: "#333333" }, // Soft Orange
-            "españa": { light: "#F2DDE0", dark: "#9C6267", text_dark: "#333333", bg: "#C9898E", text: "#FFFFFF" }, // Dusty Rose
-            "argentina": { light: "#E9F0E5", dark: "#7D9969", text_dark: "#333333", bg: "#AEC59D", text: "#333333" }, // Light Sage Green
-            "colombia": { light: "#EBE9F4", dark: "#7B6F9E", text_dark: "#333333", bg: "#A59CC4", text: "#FFFFFF" }, // Muted Lavender
-            "chile": { light: "#D6E4DB", dark: "#3D6F56", text_dark: "#333333", bg: "#5A9A77", text: "#FFFFFF" }, // Forest Green
-            "venezuela": { light: "#FCEFD2", dark: "#A08011", text_dark: "#333333", bg: "#F0C419", text: "#333333" }, // Golden Yellow
-            "ecuador": { light: "#DCE3E8", dark: "#475C68", text_dark: "#333333", bg: "#6E8898", text: "#FFFFFF" }, // Steel Blue
-            "all": { light: "#E8E7FA", dark: "#4f46e5", text_dark: "#333333", bg: "#4f46e5", text: "#FFFFFF" } // Índigo per a "Totes"
+            "mexic": { bg: "#77A8A8", text: "#FFFFFF", light: "#D7E9E9", text_dark: "#333" },
+            "peru": { bg: "#E8A375", text: "#333333", light: "#F8E4D7", text_dark: "#333" },
+            "españa": { bg: "#C9898E", text: "#FFFFFF", light: "#F2DDE0", text_dark: "#333" },
+            "argentina": { bg: "#AEC59D", text: "#333333", light: "#E9F0E5", text_dark: "#333" },
+            "colombia": { bg: "#A59CC4", text: "#FFFFFF", light: "#EBE9F4", text_dark: "#333" },
+            "chile": { bg: "#5A9A77", text: "#FFFFFF", light: "#D6E4DB", text_dark: "#333" },
+            "venezuela": { bg: "#F0C419", text: "#333333", light: "#FCEFD2", text_dark: "#333" },
+            "ecuador": { bg: "#6E8898", text: "#FFFFFF", light: "#DCE3E8", text_dark: "#333" },
+            "all": { bg: "#4f46e5", text: "#FFFFFF", light: "#E8E7FA", text_dark: "#333" }
         };
-       
-        let currentFilter = 'all'; // 'all' o un valor de país/categoria
 
         async function initFirebase() {
             try {
-                // setLogLevel('Debug');
                 const app = initializeApp(firebaseConfig);
                 db = getFirestore(app);
                 auth = getAuth(app);
-
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
                         userId = user.uid;
-                        document.getElementById('user-id-display').innerHTML =
-                            `<i data-lucide="user" class="w-4 h-4 mr-1"></i> Usuari ID: ${userId}`;
+                        document.getElementById('user-id-display').innerHTML = `<i data-lucide="user" class="w-4 h-4 mr-1"></i> Usuari ID: ${userId}`;
                         if (typeof lucide !== 'undefined') lucide.createIcons();
-                        isAuthReady = true;
                         document.getElementById('save-recipe-btn').disabled = false;
-                        document.getElementById('save-recipe-btn').innerHTML =
-                            '<i data-lucide="save" class="w-5 h-5 mr-2"></i> Guardar Recepta';
-                       
                         listenForRecipes();
-
                     } else {
-                        if (initialAuthToken) {
-                            await signInWithCustomToken(auth, initialAuthToken);
-                        } else {
-                            await signInAnonymously(auth);
-                        }
+                        if (initialAuthToken) await signInWithCustomToken(auth, initialAuthToken);
+                        else await signInAnonymously(auth);
                     }
                 });
-               
-            } catch (error) {
-                console.error("Error inicialitzant Firebase:", error);
-            }
+            } catch (error) { console.error("Error Firebase:", error); }
         }
 
-        /**
-         * Ruta de la col·lecció privada de l'usuari:
-         */
         function getRecipesCollectionRef() {
             if (!userId || !db) return null;
             return collection(db, 'artifacts', appId, 'users', userId, 'receptes');
         }
 
-        // --- FIREBASE DATA LISTENERS ---
-
         function listenForRecipes() {
             const collectionRef = getRecipesCollectionRef();
             if (!collectionRef) return;
-           
-            const recipesQuery = query(collectionRef);
-
-            onSnapshot(recipesQuery, (snapshot) => {
-                const firebaseRecipes = [];
-                snapshot.forEach(doc => {
-                    const data = doc.data();
-                    firebaseRecipes.push({
-                        id: doc.id,
-                        // Ús de 'nom' o 'nombre' per compatibilitat amb DB i Flask
-                        nom: data.nom || data.nombre,
-                        categoria: data.categoria || 'altres',
-                        ingredients: data.ingredients || data.ingredientes,
-                        passos: data.pasos || data.passos,
-                        imatge_url: data.imatge_url || data.imagen_url
-                    });
-                });
-               
-                console.log("Receptes de Firestore carregades/actualitzades. Total d'usuari: " + firebaseRecipes.length);
-                // Si necessites fusionar les receptes de Flask i Firestore, aquí seria el lloc
-                // allRecipes = [...recipesFromFlask, ...firebaseRecipes];
-            }, (error) => {
-                console.error("Error al escoltar receptes de l'usuari (Firestore): ", error);
-            });
+            onSnapshot(query(collectionRef), (snapshot) => {});
         }
 
-        // --- CARGA INICIAL DE RECETAS DESDE FLASK ---
         async function loadRecipesFromFlask() {
             document.getElementById('loading-message').classList.remove('hidden');
             try {
                 const response = await fetch('/api/recipes?cat=' + currentFilter);
                 const recipes = await response.json();
-               
-                allRecipes = recipes
-                    .filter(r => CATEGORY_MAP.hasOwnProperty(r.categoria_interna || r.categoria) || (r.categoria_interna || r.categoria) === 'altres')
-                    .map(r => ({
-                        ...r,
-                        // Normalització de claus
-                        categoria: r.categoria_interna || r.categoria || 'altres',
-                        nom: r.nombre || r.nom,
-                        ingredients: r.ingredientes || r.ingredients,
-                        passos: r.pasos || r.passos,
-                        imatge_url: r.url
-                    }));
-               
-                allRecipes.sort((a, b) => (a.nom || '').localeCompare((b.nom || ''), 'ca', { sensitivity: 'base' }));
-
+                allRecipes = recipes.map(r => ({
+                    ...r,
+                    categoria: r.categoria_interna || r.categoria || 'altres',
+                    nom: r.nombre || r.nom,
+                    ingredients: r.ingredientes || r.ingredients,
+                    passos: r.pasos || r.passos,
+                    imatge_url: r.url
+                }));
+                allRecipes.sort((a, b) => (a.nom || '').localeCompare((b.nom || ''), 'ca'));
                 filterAndRenderRecipes(document.getElementById('search-input').value.toLowerCase().trim());
-
-            } catch (error) {
-                console.error("Error carregant receptes des de Flask:", error);
-                showFloatingMessage('Error de connexió al servidor de receptes (Flask API).', 'error');
-            } finally {
-                document.getElementById('loading-message').classList.add('hidden');
-            }
+            } catch (error) { console.error("Error Flask:", error); }
+            finally { document.getElementById('loading-message').classList.add('hidden'); }
         }
-
-
-        // --- RENDERIZADO Y LÓGICA DE UI ---
 
         document.addEventListener('DOMContentLoaded', () => {
             initFirebase();
             setupEventListeners();
-            if (typeof lucide !== 'undefined') lucide.createIcons();
             renderFilterButtons();
-           
             loadRecipesFromFlask();
-
             setupChatbot();
         });
 
         function setupEventListeners() {
-            // Vistes
             document.getElementById('view-list-btn').addEventListener('click', () => switchView('list'));
             document.getElementById('view-add-btn').addEventListener('click', () => switchView('add'));
-           
-            // Formulari
             document.getElementById('add-recipe-form').addEventListener('submit', handleAddRecipe);
-
-            // Cerca
-            document.getElementById('search-input').addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase().trim();
-                filterAndRenderRecipes(searchTerm);
-            });
-
-            // Modal
-            const modal = document.getElementById('recipe-detail-modal');
-            document.getElementById('close-detail-modal').addEventListener('click', () => {
-                closeRecipeDetailModal();
-            });
-           
-            // Cerrar modal con ESC
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('flex')) {
-                    closeRecipeDetailModal();
-                }
-            });
-
-            modal.addEventListener('click', (e) => {
-                if(e.target === modal) {
-                    closeRecipeDetailModal();
-                }
-            });
-
+            document.getElementById('search-input').addEventListener('input', (e) => filterAndRenderRecipes(e.target.value.toLowerCase().trim()));
+            document.getElementById('close-detail-modal').addEventListener('click', closeRecipeDetailModal);
         }
-       
+
         function closeRecipeDetailModal() {
             document.getElementById('recipe-detail-modal').classList.add('hidden');
             document.getElementById('recipe-detail-modal').classList.remove('flex');
         }
 
-
         function switchView(view) {
             const listBtn = document.getElementById('view-list-btn');
             const addBtn = document.getElementById('view-add-btn');
-
             if (view === 'list') {
                 document.getElementById('recipe-list-view').classList.remove('hidden');
                 document.getElementById('add-recipe-view').classList.add('hidden');
-                listBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
-                listBtn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                addBtn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
-                addBtn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-            } else if (view === 'add') {
+                listBtn.classList.add('bg-indigo-600', 'text-white');
+                addBtn.classList.remove('bg-indigo-600', 'text-white');
+            } else {
                 document.getElementById('recipe-list-view').classList.add('hidden');
                 document.getElementById('add-recipe-view').classList.remove('hidden');
-                addBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
-                addBtn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                listBtn.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
-                listBtn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                addBtn.classList.add('bg-indigo-600', 'text-white');
+                listBtn.classList.remove('bg-indigo-600', 'text-white');
             }
         }
-       
+
         function renderFilterButtons() {
             const container = document.getElementById('filter-buttons');
-            container.innerHTML = ''; // Netejar
-
-            // Botó "Totes"
+            container.innerHTML = '';
             container.appendChild(createFilterButton('all', 'Totes'));
-
-            // Botons per país
-            Object.entries(CATEGORY_MAP).forEach(([key, value]) => {
-                container.appendChild(createFilterButton(key, value));
-            });
+            Object.entries(CATEGORY_MAP).forEach(([key, value]) => container.appendChild(createFilterButton(key, value)));
         }
 
-        // Botó amb color de categoria SEMPRE visible
         function createFilterButton(key, text) {
             const button = document.createElement('button');
-            const isSelected = key === currentFilter;
             const colorPalette = CATEGORY_COLORS[key] || CATEGORY_COLORS['all'];
-           
-            let defaultClasses = 'filter-btn px-4 py-2 rounded-full text-sm font-semibold transition duration-150 shadow-sm whitespace-nowrap';
-           
-            // Estils base: fons clar i vorell de color fosc
-            button.style.backgroundColor = colorPalette.light;
-            button.style.color = colorPalette.text_dark; // Text fosc
-            button.style.borderColor = colorPalette.dark; // Vorell de color intens
-            button.classList.add('border');
-            button.classList.remove('bg-white', 'text-gray-700'); // Elimina classes per defecte
-
-            if (isSelected) {
-                // Estil seleccionat: fons intens i text clar
-                button.style.backgroundColor = colorPalette.bg;
-                button.style.color = colorPalette.text;
-                button.style.borderColor = colorPalette.bg;
-                button.classList.add('shadow-lg', 'font-extrabold'); // Més èmfasi
-            } else {
-                button.classList.remove('shadow-lg', 'font-extrabold');
-                // Afegim el hover dinàmic per ressaltar
-                button.onmouseover = () => { button.style.backgroundColor = colorPalette.bg; button.style.color = colorPalette.text; };
-                button.onmouseout = () => { button.style.backgroundColor = colorPalette.light; button.style.color = colorPalette.text_dark; };
-            }
-
-            button.className += ` ${defaultClasses}`;
+            button.className = 'filter-btn px-4 py-2 rounded-full text-sm font-semibold transition border';
+            button.style.backgroundColor = (key === currentFilter) ? colorPalette.bg : colorPalette.light;
+            button.style.color = (key === currentFilter) ? colorPalette.text : colorPalette.text_dark;
             button.textContent = text;
-            button.dataset.filter = key;
-
             button.addEventListener('click', () => {
                 currentFilter = key;
                 renderFilterButtons();
                 filterAndRenderRecipes(document.getElementById('search-input').value.toLowerCase().trim());
             });
-
             return button;
         }
 
-
         function filterAndRenderRecipes(searchTerm) {
-            const filteredRecipes = allRecipes.filter(recipe => {
-                const matchesSearch = (recipe.nom || '').toLowerCase().includes(searchTerm);
-                const matchesFilter = currentFilter === 'all' || recipe.categoria === currentFilter;
-                return matchesSearch && matchesFilter;
-            });
-            renderRecipes(filteredRecipes);
+            const filtered = allRecipes.filter(r => (r.nom || '').toLowerCase().includes(searchTerm) && (currentFilter === 'all' || r.categoria === currentFilter));
+            renderRecipes(filtered);
         }
 
-        function renderRecipes(recipesToDisplay) {
+        function renderRecipes(recipes) {
             const container = document.getElementById('recipes-container');
-            const noRecipesMessage = document.getElementById('no-recipes-message');
-            container.innerHTML = ''; // Netejar el contenidor
-
-            if (recipesToDisplay.length === 0) {
-                noRecipesMessage.classList.remove('hidden');
-                return;
-            }
-            noRecipesMessage.classList.add('hidden');
-
-            recipesToDisplay.forEach(recipe => {
-                const card = createRecipeCard(recipe);
-                container.appendChild(card);
-            });
+            container.innerHTML = '';
+            if (recipes.length === 0) { document.getElementById('no-recipes-message').classList.remove('hidden'); return; }
+            document.getElementById('no-recipes-message').classList.add('hidden');
+            recipes.forEach(r => container.appendChild(createRecipeCard(r)));
             if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
-        // Funció per crear la targeta de recepta
+        const cleanText = (text) => {
+            if (!text) return '';
+            let cleaned = text.replace(/^\[['"]?|['"]?\]$/g, '');
+            cleaned = cleaned.replace(/['"]?, ?['"]?/g, ' ');
+            return cleaned.trim();
+        };
+
         function createRecipeCard(recipe) {
             const card = document.createElement('div');
-            const categoryKey = recipe.categoria;
-            const categoryName = CATEGORY_MAP[categoryKey] || categoryKey.replace('_', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            const categoryIcon = CATEGORY_ICONS[categoryKey] || 'utensils';
-           
-            const color = CATEGORY_COLORS[categoryKey]?.bg || '#6b7280';
-            const textColor = CATEGORY_COLORS[categoryKey]?.text || '#FFFFFF';
-           
-            const recipeName = recipe.nom;
-
-            const cleanText = (text) => {
-                if (!text) return '';
-                return text.replace(/^\[['"]?|['"]?\]$/g, '').replace(/['"]?, ?['"]?/g, ', ');
-            };
-
-            card.className = 'recipe-card rounded-xl shadow-lg overflow-hidden border border-gray-100 cursor-pointer p-5';
+            const color = CATEGORY_COLORS[recipe.categoria]?.bg || '#6b7280';
+            const textColor = CATEGORY_COLORS[recipe.categoria]?.text || '#FFFFFF';
+            card.className = 'recipe-card rounded-xl shadow-lg overflow-hidden cursor-pointer p-5 flex flex-col justify-between h-48';
             card.style.backgroundColor = color;
             card.style.color = textColor;
+           
+            // Netegem els ingredients per a la previsualització (sense salts de línia estranys)
+            const previewText = cleanText(recipe.ingredients).replace(/\n/g, ' ').substring(0, 75);
 
             card.innerHTML = `
                 <div>
-                    <div class="flex items-center text-sm font-semibold mb-2" style="color: ${textColor};">
-                        <i data-lucide="${categoryIcon}" class="w-4 h-4 mr-1" style="color: ${textColor};"></i>
-                        <span>${categoryName}</span>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-1 truncate">${recipeName}</h3>
-                    <p class="text-sm mb-4 line-clamp-2" style="color: ${textColor}; opacity: 0.8;">
-                        **Ingredients:** ${cleanText(recipe.ingredients).substring(0, 100)}...
+                    <h3 class="text-2xl font-bold mb-2 truncate">${recipe.nom}</h3>
+                    <p class="text-sm opacity-90 line-clamp-3 leading-snug">
+                        ${previewText}${previewText.length >= 75 ? '...' : ''}
                     </p>
-                    <button class="w-full font-semibold text-center mt-2 flex items-center justify-center" style="color: ${textColor};">
-                        Veure Recepta
-                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
-                    </button>
+                </div>
+                <div class="flex justify-end items-center mt-2 opacity-80 text-xs font-semibold uppercase tracking-wider">
+                    Veure recepta <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                 </div>
             `;
-
             card.addEventListener('click', () => showRecipeDetail(recipe));
             return card;
         }
 
-        // Ingredients i passos apilats (un sota l'altre)
         window.showRecipeDetail = function(recipe) {
             const modal = document.getElementById('recipe-detail-modal');
             const content = document.getElementById('modal-content');
+            const color = CATEGORY_COLORS[recipe.categoria]?.bg || '#6b7280';
 
-            // Ús de la normalització (per si ve del chatbot)
-            const categoryKey = recipe.categoria || 'all';
-            const categoryName = CATEGORY_MAP[categoryKey] || categoryKey.replace('_', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            const categoryIcon = CATEGORY_ICONS[categoryKey] || 'utensils';
-           
-            const color = CATEGORY_COLORS[categoryKey]?.bg || '#6b7280';
-            const recipeName = recipe.nom || recipe.nombre; // Ús de 'nom' o 'nombre'
-            const recipeIngredients = recipe.ingredients || recipe.ingredientes; // Ús de 'ingredients' o 'ingredientes'
-            const recipeSteps = recipe.pasos || recipe.passos; // Ús de 'pasos' o 'passos'
-
-            const cleanText = (text) => {
-                if (!text) return '';
-                // Elimina les [] o cometes que envolten els arrays de text de la base de dades
-                return text.replace(/^\[['"]?|['"]?\]$/g, '').replace(/['"]?, ?['"]?/g, ', ');
-            };
-
-            // Funció per convertir text de línies/punts/comes a llista HTML
-            const toHtmlList = (text) => {
+            const toHtmlList = (text, isIngredient = false) => {
                 const cleanedText = cleanText(text);
-                if (!cleanedText) return '<ul><li>No hi ha informació disponible.</li></ul>';
+                if (!cleanedText) return '<ul><li>No hi ha dades.</li></ul>';
                
-                // Utilitza comes, punts o salts de línia per separar els ítems
-                const items = cleanedText.split(/[\r\n]+|\.\s*|\,\s*/).filter(item => item.trim() !== '');
+                let items = [];
+                if (isIngredient) {
+                    items = cleanedText.split(/(?=\d)/).filter(i => i.trim().length > 1);
+                } else {
+                    items = cleanedText.split(/[\r\n]+|(?<!\d)\.(?!\d)\s*/).filter(i => i.trim().length > 1);
+                }
                
-                if (items.length === 0) return '<ul><li>No hi ha informació disponible.</li></ul>';
-               
-                // Si és una llista de passos o d'ingredients, utilitza un format coherent.
-                const listItems = items.map(item => `<li class="mb-2 text-gray-700 flex items-start"><i data-lucide="check" class="w-5 h-5 mr-2 flex-shrink-0 mt-1" style="color: ${color};"></i> ${item.trim()}</li>`).join('');
-                return `<ol class="list-none space-y-3 p-0">${listItems}</ol>`;
+                const listItems = items.map(item => `
+                    <li class="mb-2 text-gray-700 flex items-start">
+                        <i data-lucide="check" class="w-5 h-5 mr-2 flex-shrink-0 mt-1" style="color: ${color};"></i>
+                        ${item.trim()}
+                    </li>`).join('');
+                return `<ul class="list-none space-y-2">${listItems}</ul>`;
             };
 
             content.innerHTML = `
+                <h1 class="text-3xl font-extrabold mb-4">${recipe.nom}</h1>
                 <div class="space-y-6">
-                    <h1 class="text-3xl font-extrabold text-gray-900">${recipeName}</h1>
-                    <div class="flex items-center text-md font-semibold mb-6" style="color: ${color};">
-                        <i data-lucide="${categoryIcon}" class="w-5 h-5 mr-2"></i>
-                        <span>${categoryName}</span>
+                    <div>
+                        <h2 class="text-xl font-bold border-b-2 mb-3" style="border-color: ${color}">Ingredients</h2>
+                        ${toHtmlList(recipe.ingredients, true)}
                     </div>
-
-                    <div class="grid md:grid-cols-1 gap-8">
-                        <div>
-                            <h2 class="text-2xl font-bold text-gray-800 border-b-2 pb-2 mb-4 flex items-center" style="border-color: ${color};">
-                                <i data-lucide="list-checks" class="w-6 h-6 mr-3" style="color: ${color};"></i>
-                                Ingredients
-                            </h2>
-                            ${toHtmlList(recipeIngredients)}
-                        </div>
-                       
-                        <div>
-                            <h2 class="text-2xl font-bold text-gray-800 border-b-2 pb-2 mb-4 flex items-center" style="border-color: ${color};">
-                                <i data-lucide="chef-hat" class="w-6 h-6 mr-3" style="color: ${color};"></i>
-                                Passos de Preparació
-                            </h2>
-                            ${toHtmlList(recipeSteps)}
-                        </div>
+                    <div>
+                        <h2 class="text-xl font-bold border-b-2 mb-3" style="border-color: ${color}">Passos de Preparació</h2>
+                        ${toHtmlList(recipe.passos, false)}
                     </div>
-                </div>
-            `;
-           
+                </div>`;
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             if (typeof lucide !== 'undefined') lucide.createIcons();
-        }
-
-
-        // --- FIREBASE DATA MANIPULATION ---
+        };
 
         async function handleAddRecipe(e) {
             e.preventDefault();
-           
             const btn = document.getElementById('save-recipe-btn');
-            btn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 mr-2 animate-spin"></i> Guardant...';
             btn.disabled = true;
-
             const form = e.target;
             const newRecipe = {
                 nom: form.nom.value.trim(),
                 categoria: form.categoria.value,
                 ingredients: form.ingredients.value.trim(),
-                passos: form.pasos.value.trim(),
+                passos: form.passos.value.trim(),
                 imatge_url: form.imatge_url.value.trim(),
                 createdAt: new Date().toISOString()
             };
-
             try {
-                const collectionRef = getRecipesCollectionRef();
-                if (!collectionRef) throw new Error("Usuari no autenticat.");
-               
-                await addDoc(collectionRef, newRecipe);
-               
-                showFloatingMessage('Recepta guardada correctament!', 'success');
+                const ref = getRecipesCollectionRef();
+                if (ref) await addDoc(ref, newRecipe);
+                showFloatingMessage('Guardat!', 'success');
                 form.reset();
                 switchView('list');
-
-            } catch (error) {
-                console.error("Error afegint document: ", error);
-                showFloatingMessage('Error al guardar la recepta. Prova de nou.', 'error');
-            } finally {
-                btn.innerHTML = '<i data-lucide="save" class="w-5 h-5 mr-2"></i> Guardar Recepta';
-                btn.disabled = false;
-                if (typeof lucide !== 'undefined') lucide.createIcons();
-            }
+            } catch (err) { showFloatingMessage('Error', 'error'); }
+            finally { btn.disabled = false; }
         }
 
-
-        // --- FUNCIONS AUXILIARS ---
-
-        function showFloatingMessage(message, type = 'info') {
+        function showFloatingMessage(message, type) {
             const container = document.getElementById('floating-message-container');
             const msgEl = document.createElement('div');
-           
-            let bgColor, icon, textColor;
-            switch (type) {
-                case 'success':
-                    bgColor = 'bg-green-500';
-                    icon = 'check-circle';
-                    textColor = 'text-white';
-                    break;
-                case 'error':
-                    bgColor = 'bg-red-500';
-                    icon = 'alert-triangle';
-                    textColor = 'text-white';
-                    break;
-                case 'info':
-                default:
-                    bgColor = 'bg-indigo-500';
-                    icon = 'info';
-                    textColor = 'text-white';
-                    break;
-            }
-
-            msgEl.className = `${bgColor} ${textColor} p-4 rounded-xl shadow-xl mb-3 flex items-center transition-all duration-300 transform opacity-0 scale-90`;
-            msgEl.innerHTML = `<i data-lucide="${icon}" class="w-5 h-5 mr-2 flex-shrink-0"></i> ${message}`;
-
+            msgEl.className = `p-4 rounded-xl shadow-xl mb-3 text-white ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            msgEl.textContent = message;
             container.appendChild(msgEl);
-           
-            void msgEl.offsetWidth;
-
-            msgEl.classList.remove('opacity-0', 'scale-90');
-            msgEl.classList.add('opacity-100', 'scale-100');
-
-            setTimeout(() => {
-                msgEl.classList.remove('opacity-100', 'scale-100');
-                msgEl.classList.add('opacity-0', 'scale-90');
-                setTimeout(() => {
-                    msgEl.remove();
-                }, 300);
-            }, 3000);
-           
-            if (typeof lucide !== 'undefined') lucide.createIcons();
+            setTimeout(() => msgEl.remove(), 3000);
         }
 
-
-        // --- LÓGICA DEL CHATBOT (SIN IA) ---
-
         function setupChatbot() {
-            const toggleBtn = document.getElementById('chatbot-toggle-btn');
-            const closeBtn = document.getElementById('chatbot-close-btn');
-            const chatWindow = document.getElementById('chatbot-window');
-            const chatForm = document.getElementById('chat-form');
-            const chatInput = document.getElementById('chat-input');
-
-            toggleBtn.addEventListener('click', () => {
-                chatWindow.classList.toggle('hidden');
-                if (!chatWindow.classList.contains('hidden')) {
-                    chatInput.focus();
-                }
-            });
-            closeBtn.addEventListener('click', () => {
-                chatWindow.classList.add('hidden');
-            });
-
-            chatForm.addEventListener('submit', handleChatSubmit);
+            document.getElementById('chatbot-toggle-btn').addEventListener('click', () => document.getElementById('chatbot-window').classList.toggle('hidden'));
+            document.getElementById('chatbot-close-btn').addEventListener('click', () => document.getElementById('chatbot-window').classList.add('hidden'));
+            document.getElementById('chat-form').addEventListener('submit', handleChatSubmit);
         }
 
         async function handleChatSubmit(e) {
             e.preventDefault();
-            const chatInput = document.getElementById('chat-input');
-            const userMessage = chatInput.value.trim();
-           
-            if (!userMessage) return;
-
-            displayMessage(userMessage, 'user');
-            chatInput.value = '';
-           
-            const sendBtn = document.getElementById('chat-send-btn');
-            sendBtn.disabled = true;
-            sendBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin"></i>';
-            if (typeof lucide !== 'undefined') lucide.createIcons();
-
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            displayMessage(msg, 'user');
+            input.value = '';
             try {
-                const response = await fetch('/api/chatbot', {
+                const res = await fetch('/api/chatbot', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: userMessage })
+                    body: JSON.stringify({ message: msg })
                 });
-
-                const data = await response.json();
-                const botResponseText = data.response;
-                const recipeData = data.recipe;
-
-                displayMessage(botResponseText, 'bot');
-
-                if (recipeData) {
-                    // --- CORRECCIÓ CLAU AQUÍ ---
-                    // Normalitzem l'objecte de recepta del chatbot perquè utilitzi les mateixes claus que la funció showRecipeDetail
-                    const normalizedRecipe = {
-                        nom: recipeData.nombre || recipeData.nom,
-                        categoria: recipeData.categoria_interna || recipeData.categoria || 'all',
-                        ingredients: recipeData.ingredientes || recipeData.ingredients,
-                        pasos: recipeData.pasos || recipeData.passos,
-                        imatge_url: recipeData.url || recipeData.imatge_url,
-                        // Pots afegir altres camps si els utilitzes
-                        duracion: recipeData.duracion,
-                        porciones: recipeData.porciones,
-                        calorias: recipeData.calorias
-                    };
-                   
-                    setTimeout(() => {
-                        window.showRecipeDetail(normalizedRecipe); // Passem la recepta normalitzada
-                    }, 500);
+                const data = await res.json();
+                displayMessage(data.response, 'bot');
+                if (data.recipe) {
+                    const r = data.recipe;
+                    window.showRecipeDetail({
+                        nom: r.nombre || r.nom,
+                        categoria: r.categoria_interna || r.categoria || 'all',
+                        ingredients: r.ingredientes || r.ingredients,
+                        passos: r.pasos || r.passos
+                    });
                 }
-
-            } catch (error) {
-                console.error("Error de comunicación con el chatbot:", error);
-                displayMessage("Ho sento, hi ha hagut un error de connexió amb el servidor de receptes.", 'bot');
-            } finally {
-                sendBtn.disabled = false;
-                sendBtn.innerHTML = '<i data-lucide="send" class="w-5 h-5"></i>';
-                if (typeof lucide !== 'undefined') lucide.createIcons();
-            }
+            } catch (err) { displayMessage("Error", 'bot'); }
         }
 
         function displayMessage(message, sender) {
-            const messagesContainer = document.getElementById('chat-messages');
-            const messageEl = document.createElement('div');
-           
-            const formattedMessage = message.replace(/\n/g, '<br>');
-
-            messageEl.className = `p-3 rounded-xl shadow-sm text-sm break-words ${sender === 'user' ? 'user-message ml-auto' : 'bot-message mr-auto'}`;
-            messageEl.innerHTML = formattedMessage;
-           
-            messagesContainer.appendChild(messageEl);
-           
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            const container = document.getElementById('chat-messages');
+            const el = document.createElement('div');
+            el.className = `p-3 rounded-xl text-sm ${sender === 'user' ? 'user-message ml-auto' : 'bot-message mr-auto'}`;
+            el.innerHTML = message.replace(/\n/g, '<br>');
+            container.appendChild(el);
+            container.scrollTop = container.scrollHeight;
         }
-
-
     </script>
 </body>
 </html>
